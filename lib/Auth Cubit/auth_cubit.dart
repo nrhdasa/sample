@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../Connection/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum AuthState { signedIn, signedOut }
 
@@ -27,11 +26,13 @@ class AuthCubit extends Cubit<AuthState> {
 
 class AuthStream {
   final _controller = StreamController<bool>();
+  late SharedPreferences prefs;
   AuthStream() {
     _controller.sink.add(true);
     Timer.periodic(const Duration(seconds: 1), (timer) async {
-      var cookie = await Auth.isLoggedIn();
-      if (cookie == "" || cookie.contains("sid=Guest")) {
+      prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString("token");
+      if (token == null) {
         _controller.sink.add(false);
       } else {
         _controller.sink.add(true);

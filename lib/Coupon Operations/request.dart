@@ -18,7 +18,7 @@ class _CouponRequestState extends State<CouponRequest> {
   final _formKey = GlobalKey<FormState>();
   DateTime _operationDate = DateTime.now();
   final TextEditingController _couponCountController = TextEditingController();
-  Map<String, dynamic> _formData = {};
+  final Map<String, dynamic> _formData = {};
   @override
   void initState() {
     _couponCountController.text = "1";
@@ -325,7 +325,6 @@ class _CouponRequestState extends State<CouponRequest> {
                                   _formKey.currentState!.save();
                                   _formData['date'] = DateFormat('yyyy-MM-dd')
                                       .format(_operationDate);
-                                  print(_formData);
                                   await createRequest(context, _formData);
                                 }
                               },

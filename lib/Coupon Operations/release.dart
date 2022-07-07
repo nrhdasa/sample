@@ -18,7 +18,7 @@ class _CouponReleaseState extends State<CouponRelease> {
   final _formKey = GlobalKey<FormState>();
   DateTime _operationDate = DateTime.now();
   final TextEditingController _couponCountController = TextEditingController();
-  Map<String, dynamic> _formData = {};
+  final Map<String, dynamic> _formData = {};
   @override
   void initState() {
     _couponCountController.text = "1";
@@ -325,7 +325,7 @@ class _CouponReleaseState extends State<CouponRelease> {
                                   _formKey.currentState!.save();
                                   _formData['date'] = DateFormat('yyyy-MM-dd')
                                       .format(_operationDate);
-                                  print(_formData);
+
                                   await createRelease(context, _formData);
                                 }
                               },

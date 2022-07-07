@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../Resources/common.dart';
 import 'operations.dart';
@@ -17,14 +15,14 @@ class CouponQR extends StatelessWidget {
         future: getCouponQR(context, couponName),
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.done) {
-            String _code = "";
+            String code = "";
             // if (snap.data!.containsKey(key)) {
             //   _code = snap.data!.keys.firstWhere((k) => k == 'qr_code');
             // }
             if (snap.data == null) {
-              return Container(child: Text("error"));
+              return const Text("error");
             } else {
-              _code = snap.data!['qr_code'];
+              code = snap.data!['qr_code'];
             }
 
             return SafeArea(
@@ -34,7 +32,7 @@ class CouponQR extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       Row(
@@ -47,18 +45,18 @@ class CouponQR extends StatelessWidget {
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.white.withOpacity(.8),
-                                      offset: Offset(2, 2),
+                                      offset: const Offset(2, 2),
                                       blurRadius: 50)
                                 ],
                                 color: snap.data!['coupon_type'] == "Gold"
-                                    ? Color(0xFFFFD700)
-                                    : Color(0xFFD3D3D3),
+                                    ? const Color(0xFFFFD700)
+                                    : const Color(0xFFD3D3D3),
                               ),
                               child: Text(
                                 snap.data!['coupon_type']
                                     .toString()
                                     .toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 40, fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -71,12 +69,12 @@ class CouponQR extends StatelessWidget {
                             decoration: BoxDecoration(boxShadow: [
                               BoxShadow(
                                   color: Colors.white.withOpacity(.8),
-                                  offset: Offset(2, 2),
+                                  offset: const Offset(2, 2),
                                   blurRadius: 50)
                             ], color: Theme.of(context).colorScheme.primary),
                             child: Text(
                               snap.data!['number'].toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 40, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -84,18 +82,18 @@ class CouponQR extends StatelessWidget {
                       ),
                       QRImage(
                         width: double.infinity,
-                        qrcode: _code,
+                        qrcode: code,
                       ),
                       Row(children: [
                         Expanded(
                           child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primary),
                             child: Text(
                               getDateinFormat(snap.data!['date'], "d MMM"),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -104,39 +102,39 @@ class CouponQR extends StatelessWidget {
                           child: Container(
                             width: 200,
                             alignment: Alignment.center,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: Theme.of(context)
                                     .colorScheme
                                     .tertiaryContainer),
                             child: Text(
                               getDateinFormat(snap.data!['date'], "EEEE"),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
                       ]),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          await shareQRcode(_code);
+                          await shareQRcode(code);
                           // String path = await getQRFileAddress(couponName);
                           // Share.shareFiles([path], text: 'QR Code');
                         },
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(20),
+                          primary:
+                              Theme.of(context).colorScheme.tertiaryContainer,
+                        ),
                         child: Icon(
                           Icons.share,
                           size: 50,
                           color:
                               Theme.of(context).colorScheme.onTertiaryContainer,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(20),
-                          primary:
-                              Theme.of(context).colorScheme.tertiaryContainer,
                         ),
                       )
                     ],
@@ -145,7 +143,7 @@ class CouponQR extends StatelessWidget {
               ),
             );
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         },
       ),

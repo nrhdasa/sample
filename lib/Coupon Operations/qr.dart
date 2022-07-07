@@ -17,7 +17,7 @@ class QRImage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _QRImageState createState() => _QRImageState();
+  State<QRImage> createState() => _QRImageState();
 }
 
 class _QRImageState extends State<QRImage> {

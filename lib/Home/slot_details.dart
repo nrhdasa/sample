@@ -6,8 +6,15 @@ class SlotDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ;
+    // ;
+    if (data['data'].length == 0) {
+      return const Text(
+        "No Data Received.Please contact Admin",
+        style: TextStyle(color: Colors.white),
+      );
+    }
     Map<String, dynamic> finaldata = filterData(data);
-    const double distance = 10;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

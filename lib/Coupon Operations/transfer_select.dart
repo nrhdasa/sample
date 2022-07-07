@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:sample/Resources/buttons.dart';
-import 'package:sample/Resources/common.dart';
 
 import '../Auth Cubit/auth_widget.dart';
 import '../Internet Cubit/internet_widget.dart';
@@ -71,7 +68,7 @@ class _TransferSelectState extends State<TransferSelect> {
                           child: ListTile(
                             title: Text(users[ind]['full_name']),
                             subtitle: Text(users[ind]['name']),
-                            leading: Icon(Icons.person),
+                            leading: const Icon(Icons.person),
                             onTap: () {
                               Navigator.pushNamed(context, 'coupon/transfer',
                                   arguments: {"user": users[ind]});

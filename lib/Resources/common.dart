@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../Connection/auth.dart';
+
 snackBarError(BuildContext context, String message) {
   SnackBar snackBar = SnackBar(
     content: Text(
@@ -27,8 +29,6 @@ bool isNumeric(String string) {
 
 errorHandling(BuildContext context, Response<dynamic>? response) {
   if (response != null) {
-    print(response.data);
-    print(response.statusCode);
     if (response.statusCode == 417) {
       snackBarError(context, getException(response.data['exception']));
     }
@@ -36,10 +36,11 @@ errorHandling(BuildContext context, Response<dynamic>? response) {
       snackBarError(context, "Server Error! Please contact Administrator.");
     }
 
-    if (response.statusCode == 401) {
-      snackBarError(context, "Authentication Error! Session may be expired.");
+    if (response.statusCode == 401 || response.statusCode == 403) {
+      snackBarError(context, "Authentication Error!");
+      Future.delayed(const Duration(seconds: 2))
+          .then((value) => {Auth.logout()});
     }
-    // else if(response.statusCode == )
   }
 }
 

@@ -97,7 +97,7 @@ class RouteGenerator {
 
       case "coupon/qr":
         final args = settings.arguments as Map<String, dynamic>;
-        print(args);
+
         return MaterialPageRoute(
             builder: (_) => BlocProvider<InternetCubit>.value(
                   value: _internetCubit,
@@ -115,7 +115,7 @@ class RouteGenerator {
                   value: _internetCubit,
                   child: BlocProvider<AuthCubit>.value(
                     value: _authCubit,
-                    child: GeneratedCoupons(),
+                    child: const GeneratedCoupons(),
                   ),
                 ));
       case "report/users_coupons":

@@ -8,7 +8,7 @@ import '../Resources/common.dart';
 import 'operations.dart';
 
 class GeneratedCoupons extends StatefulWidget {
-  GeneratedCoupons({Key? key}) : super(key: key);
+  const GeneratedCoupons({Key? key}) : super(key: key);
 
   @override
   State<GeneratedCoupons> createState() => _GeneratedCouponsState();
@@ -133,7 +133,7 @@ class _GeneratedCouponsState extends State<GeneratedCoupons> {
                                         topRight: Radius.circular(10))),
                                 child: Text(
                                   coupons[ind]['slot'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w900),
                                 )),
@@ -142,18 +142,19 @@ class _GeneratedCouponsState extends State<GeneratedCoupons> {
                               child: Text(
                                 getDateinFormat(
                                     coupons[ind]['creation'], "d MMM | h:mm a"),
-                                style: TextStyle(fontWeight: FontWeight.w100),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w100),
                               ),
                             ),
-                            leading: Icon(Icons.qr_code_2_outlined),
+                            leading: const Icon(Icons.qr_code_2_outlined),
                             onTap: () {
                               Navigator.pushNamed(context, 'coupon/qr',
                                   arguments: {"name": coupons[ind]['name']});
                             },
                             hoverColor: Theme.of(context).colorScheme.secondary,
                             tileColor: coupons[ind]['coupon_type'] == "Gold"
-                                ? Color(0xFFFFD700)
-                                : Color(0xFFD3D3D3),
+                                ? const Color(0xFFFFD700)
+                                : const Color(0xFFD3D3D3),
                             textColor: Theme.of(context)
                                 .colorScheme
                                 .onTertiaryContainer,

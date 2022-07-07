@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import '../Auth Cubit/auth_widget.dart';
 import '../Internet Cubit/internet_widget.dart';
 import '../Resources/buttons.dart';
-import '../Resources/common.dart';
 import 'operations.dart';
 
 class UserCoupons extends StatefulWidget {
@@ -52,76 +51,74 @@ class _UserCouponsState extends State<UserCoupons> {
                     ),
                   ),
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      HKMTextButton(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(Icons.calendar_today_outlined,
-                                size: 40,
-                                color: Theme.of(context).colorScheme.primary),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              DateFormat('EEEE, dd MMM').format(_operationDate),
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 25),
-                            ),
-                          ],
-                        ),
-                        onPressed: () async {
-                          DateTime? datetime = await showDatePicker(
-                            context: context,
-                            initialDate: _operationDate,
-                            firstDate: DateTime.now()
-                                .subtract(const Duration(days: 30)),
-                            lastDate:
-                                DateTime.now().add(const Duration(days: 7)),
-                            initialEntryMode: DatePickerEntryMode.calendarOnly,
-                          );
-                          setState(() {
-                            if (datetime != null) {
-                              _operationDate = datetime;
-                            }
-                          });
-                        },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    HKMTextButton(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.calendar_today_outlined,
+                              size: 20,
+                              color: Theme.of(context).colorScheme.primary),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            DateFormat('EEEE, dd MMM').format(_operationDate),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 20),
+                          ),
+                        ],
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.only(left: 8, right: 8),
-                        color: Theme.of(context).colorScheme.tertiaryContainer,
-                        child: DropdownButton<String>(
-                            value: _slot,
-                            focusColor: Colors.amber,
-                            dropdownColor: Colors.amber,
-                            items: ["Morning", "Afternoon", "Evening"].map((e) {
-                              return DropdownMenuItem<String>(
-                                value: e,
-                                child: Text(e),
-                              );
-                            }).toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _slot = val!;
-                              });
-                            }),
-                      ),
+                      onPressed: () async {
+                        DateTime? datetime = await showDatePicker(
+                          context: context,
+                          initialDate: _operationDate,
+                          firstDate:
+                              DateTime.now().subtract(const Duration(days: 30)),
+                          lastDate: DateTime.now().add(const Duration(days: 7)),
+                          initialEntryMode: DatePickerEntryMode.calendarOnly,
+                        );
+                        setState(() {
+                          if (datetime != null) {
+                            _operationDate = datetime;
+                          }
+                        });
+                      },
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
+                      child: DropdownButton<String>(
+                          value: _slot,
+                          focusColor: Colors.amber,
+                          dropdownColor: Colors.amber,
+                          items: ["Morning", "Afternoon", "Evening"].map((e) {
+                            return DropdownMenuItem<String>(
+                              value: e,
+                              child: Text(e),
+                            );
+                          }).toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _slot = val!;
+                            });
+                          }),
+                    ),
 
-                      // DropdownButtonFormField(
-                      //   items: ["Morning", "Afternoon", "Evening"].map((e) {
-                      //     return DropdownMenuItem<String>(
-                      //       value: e,
-                      //       child: Text(e),
-                      //     );
-                      //   }).toList(),
-                      //   onChanged: (val) {},
-                      // )
-                    ],
-                  ),
+                    // DropdownButtonFormField(
+                    //   items: ["Morning", "Afternoon", "Evening"].map((e) {
+                    //     return DropdownMenuItem<String>(
+                    //       value: e,
+                    //       child: Text(e),
+                    //     );
+                    //   }).toList(),
+                    //   onChanged: (val) {},
+                    // )
+                  ],
                 ),
               ],
             ),
@@ -136,23 +133,22 @@ class _UserCouponsState extends State<UserCoupons> {
               builder: ((context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   users = snapshot.data!;
-                  print(users);
                   return ListView.builder(
                       itemCount: users.length,
                       itemBuilder: (context, ind) {
                         return Container(
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
                                   .colorScheme
                                   .tertiaryContainer,
-                              border: Border(bottom: BorderSide()),
+                              border: const Border(bottom: BorderSide()),
                             ),
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 200,
                                     child: Column(
                                       crossAxisAlignment:
@@ -172,7 +168,7 @@ class _UserCouponsState extends State<UserCoupons> {
                                               child: Text(
                                                 // coupons[ind]['slot'],
                                                 users[ind]['username'],
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 25,
                                                     fontWeight:
                                                         FontWeight.w900),
@@ -185,7 +181,7 @@ class _UserCouponsState extends State<UserCoupons> {
                                               // getDateinFormat(
                                               //     coupons[ind]['creation'], "d MMM | h:mm a"),
                                               users[ind]['user'],
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w100),
                                             ),
                                           ),
@@ -193,7 +189,7 @@ class _UserCouponsState extends State<UserCoupons> {
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: 150,
                                     child: Row(
                                       mainAxisAlignment:
@@ -207,7 +203,7 @@ class _UserCouponsState extends State<UserCoupons> {
                                                 border: Border.all(width: 1),
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: Color(0xFFD3D3D3)),
+                                                color: const Color(0xFFD3D3D3)),
                                             child: Text(
                                               users[ind]['silver']['credit']
                                                   .toString(),
@@ -226,7 +222,7 @@ class _UserCouponsState extends State<UserCoupons> {
                                                 border: Border.all(width: 1),
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: Color(0xFFFFD700)),
+                                                color: const Color(0xFFFFD700)),
                                             child: Text(
                                               users[ind]['gold']['credit']
                                                   .toString(),

@@ -20,10 +20,9 @@ class _CouponTransferState extends State<CouponTransfer> {
   final _formKey = GlobalKey<FormState>();
   DateTime _operationDate = DateTime.now();
   final TextEditingController _couponCountController = TextEditingController();
-  Map<String, dynamic> _formData = {};
+  final Map<String, dynamic> _formData = {};
   @override
   void initState() {
-    print(widget.transferUserDetails);
     _couponCountController.text = "1";
     super.initState();
   }
@@ -73,14 +72,14 @@ class _CouponTransferState extends State<CouponTransfer> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
                           decoration: BoxDecoration(
                               color: Theme.of(context)
                                   .colorScheme
                                   .tertiaryContainer,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: Text("Selected User"),
+                                  const BorderRadius.all(Radius.circular(20))),
+                          child: const Text("Selected User"),
                         ),
                         Text(
                           widget.transferUserDetails['user']['full_name'],
@@ -368,7 +367,6 @@ class _CouponTransferState extends State<CouponTransfer> {
                                       .format(_operationDate);
                                   _formData['transfer_to'] = widget
                                       .transferUserDetails['user']['name'];
-                                  print(_formData);
                                   await createTransfer(context, _formData);
                                 }
                               },

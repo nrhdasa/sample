@@ -62,7 +62,7 @@ class Home extends StatelessWidget {
                 actions: [
                   IconButton(
                       onPressed: () {
-                        Auth().logout();
+                        Auth.logout();
                       },
                       icon: Icon(Icons.logout,
                           color: Theme.of(context).colorScheme.errorContainer))
@@ -194,10 +194,10 @@ class _slotsWidgetState extends State<slotsWidget>
                                 for (int i = 0;
                                     i < _isSelectedSlot.length;
                                     i++) {
-                                  // print("i");
-                                  // print(i);
-                                  // print("index");
-                                  // print(index);
+                                  // ;
+                                  // ;
+                                  // ;
+                                  // ;
                                   if (index == i) {
                                     _isSelectedSlot[i] = true;
                                   } else {

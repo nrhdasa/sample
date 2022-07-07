@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 
 class SuccessPage extends StatefulWidget {
@@ -11,12 +10,9 @@ class SuccessPage extends StatefulWidget {
 
 class _SuccessPageState extends State<SuccessPage>
     with TickerProviderStateMixin {
-  late AnimationController _animationController;
-
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this);
   }
 
   @override
@@ -30,10 +26,10 @@ class _SuccessPageState extends State<SuccessPage>
           Lottie.asset("assets/lottie/success.json"),
           TweenAnimationBuilder(
             tween: Tween<double>(begin: 5, end: 1),
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             curve: Curves.easeInCirc,
             onEnd: () {
-              Future.delayed(Duration(seconds: 1)).then((value) {
+              Future.delayed(const Duration(seconds: 1)).then((value) {
                 Navigator.pushNamedAndRemoveUntil(
                     context, "/", (route) => false);
               });

@@ -42,7 +42,7 @@ class ReportsButtonSingle extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width / 2,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -50,18 +50,18 @@ class ReportsButtonSingle extends StatelessWidget {
                     .colorScheme
                     .tertiaryContainer
                     .withOpacity(.5),
-                offset: Offset(1, 1),
+                offset: const Offset(1, 1),
                 blurRadius: 10,
               ),
               BoxShadow(
                 color:
                     Theme.of(context).colorScheme.onBackground.withOpacity(.5),
-                offset: Offset(-1, -1),
+                offset: const Offset(-1, -1),
                 blurRadius: 10,
               )
             ],
             color: Theme.of(context).colorScheme.tertiaryContainer,
-            borderRadius: BorderRadius.all(Radius.circular(70))),
+            borderRadius: const BorderRadius.all(Radius.circular(70))),
         child: Text(title),
       ),
     );
