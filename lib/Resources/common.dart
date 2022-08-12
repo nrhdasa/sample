@@ -37,9 +37,17 @@ errorHandling(BuildContext context, Response<dynamic>? response) {
     }
 
     if (response.statusCode == 401 || response.statusCode == 403) {
-      snackBarError(context, "Authentication Error!");
-      Future.delayed(const Duration(seconds: 2))
-          .then((value) => {Auth.logout()});
+      print(response.statusCode);
+      var server_message = response.data['_server_messages'];
+      print(server_message);
+      if (server_message.contains("Not permitted") ||
+          server_message.contains("User <b>Guest</b>")) {
+        snackBarError(context, "Authentication Error!");
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => {Auth.logout()});
+      } else {
+        snackBarError(context, response.data['_error_message']);
+      }
     }
   }
 }

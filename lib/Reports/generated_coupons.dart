@@ -16,7 +16,8 @@ class GeneratedCoupons extends StatefulWidget {
 
 class _GeneratedCouponsState extends State<GeneratedCoupons> {
   List<dynamic> coupons = [];
-  DateTime _operationDate = DateTime.now();
+  DateTime _operationDate =
+      DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now()));
 
   @override
   Widget build(BuildContext context) {

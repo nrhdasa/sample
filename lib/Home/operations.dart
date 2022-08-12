@@ -12,8 +12,7 @@ Future<String?> getFullName() async {
 
 Future<Map<String, dynamic>> getDashboardData(BuildContext context) async {
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     final response = await dio.get(
         '${Auth.website}/api/method/hkm.prasadam_coupon_management.api.get_dashboard_data');

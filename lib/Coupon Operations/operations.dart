@@ -9,6 +9,7 @@ import '../Resources/common.dart';
 
 Future<Map<String, dynamic>> createRequest(
     BuildContext context, Map<String, dynamic> formData) async {
+  print("here");
   var data = {
     "type": "Request",
     "date": formData['date'],
@@ -18,13 +19,14 @@ Future<Map<String, dynamic>> createRequest(
     "docstatus": 1
   };
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
-    await dio.post('${Auth.website}/api/resource/Prasadam CPN Request',
-        data: data);
+    Response response = await dio
+        .post('${Auth.website}/api/resource/Prasadam CPN Request', data: data);
+    print(response.data);
     Navigator.pushNamed(context, "success");
   } on DioError catch (e) {
+    print(e.response);
     if (e.response != null) {
       errorHandling(context, e.response);
     } else {
@@ -45,8 +47,7 @@ Future<Map<String, dynamic>> createRelease(
     "docstatus": 1
   };
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     await dio.post('${Auth.website}/api/resource/Prasadam CPN Request',
         data: data);
@@ -64,8 +65,7 @@ Future<Map<String, dynamic>> createRelease(
 
 Future<List<dynamic>> getPrasadamCPNUsers(BuildContext context) async {
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     final response = await dio.get(
         '${Auth.website}/api/method/hkm.prasadam_coupon_management.api.fetch_request_users');
@@ -93,8 +93,7 @@ Future<Map<String, dynamic>> createTransfer(
     "docstatus": 1
   };
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     await dio.post('${Auth.website}/api/resource/Prasadam CPN Request',
         data: data);
@@ -121,8 +120,7 @@ Future<Map<String, dynamic>> generateQR(
     "authority": Uri.decodeFull(prefs.getString("username") ?? "NULL")
   };
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     final response = await dio
         .post('${Auth.website}/api/resource/Prasadam Coupon', data: data);
@@ -142,8 +140,7 @@ Future<Map<String, dynamic>> generateQR(
 Future<Map<String, dynamic>> getCouponQR(
     BuildContext context, String couponName) async {
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     final response = await dio
         .get('${Auth.website}/api/resource/Prasadam Coupon/$couponName');

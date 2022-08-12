@@ -14,9 +14,11 @@ class Auth {
           '$website/api/method/hkm.auth.login.login',
           data: {'usr': username, 'pwd': password});
       await setGlobalAuthState(response.data['message']);
+      print(response.data);
       Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
     } on DioError catch (e) {
       if (e.response != null) {
+        print(e.response);
         errorHandling(context, e.response);
       } else {
         snackBarError(context, e.message);
@@ -65,10 +67,12 @@ class Auth {
     await prefs.setString("token", data["token"]);
   }
 
-  static Future<Dio> addHeadersToDioCalls(Dio dio) async {
+  static Future<Dio> addHeadersToDioCalls() async {
+    Dio dio = Dio();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dio.options.headers['Authorization'] = prefs.getString("token");
     dio.options.headers['content-Type'] = 'application/json';
+    print(prefs.getString("token"));
     return dio;
   }
 }

@@ -7,8 +7,7 @@ import '../Resources/common.dart';
 Future<List<dynamic>> getGeneratedCoupons(
     BuildContext context, DateTime date) async {
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     final response = await dio.get(
         '${Auth.website}/api/method/hkm.prasadam_coupon_management.api.get_coupons_of_user',
@@ -28,8 +27,9 @@ Future<List<dynamic>> getGeneratedCoupons(
 Future<List<dynamic>> getUserCoupons(
     BuildContext context, DateTime date, String slot) async {
   try {
-    final Dio dio = Dio();
-    await Auth.addHeadersToDioCalls(dio);
+    print(date);
+    print(slot);
+    Dio dio = await Auth.addHeadersToDioCalls();
     // dio.interceptors.add(CookieManager(await Auth.getCookieJar()));
     final response = await dio.get(
         '${Auth.website}/api/method/hkm.prasadam_coupon_management.api.get_coupon_stats',

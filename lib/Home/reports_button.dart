@@ -17,7 +17,7 @@ class ReportsButton extends StatelessWidget {
             },
           ),
           ReportsButtonSingle(
-            title: "Users Stats",
+            title: "Users Details",
             onPressed: () {
               Navigator.pushNamed(context, 'report/users_coupons');
             },
@@ -40,8 +40,8 @@ class ReportsButtonSingle extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        alignment: Alignment.center,
-        width: MediaQuery.of(context).size.width / 2,
+        width: MediaQuery.of(context).size.width / 3,
+        height: 40,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             boxShadow: [
@@ -62,7 +62,9 @@ class ReportsButtonSingle extends StatelessWidget {
             ],
             color: Theme.of(context).colorScheme.tertiaryContainer,
             borderRadius: const BorderRadius.all(Radius.circular(70))),
-        child: Text(title),
+        child: Align(
+            alignment: Alignment.center,
+            child: FittedBox(fit: BoxFit.contain, child: Text(title))),
       ),
     );
   }

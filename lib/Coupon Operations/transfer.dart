@@ -18,7 +18,8 @@ class CouponTransfer extends StatefulWidget {
 
 class _CouponTransferState extends State<CouponTransfer> {
   final _formKey = GlobalKey<FormState>();
-  DateTime _operationDate = DateTime.now();
+  DateTime _operationDate =
+      DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now()));
   final TextEditingController _couponCountController = TextEditingController();
   final Map<String, dynamic> _formData = {};
   @override
@@ -172,6 +173,9 @@ class _CouponTransferState extends State<CouponTransfer> {
                         return val == null ? "Value can't blank" : null;
                       },
                       decoration: InputDecoration(
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontSize: 25),
                         labelText: "Slot",
                         icon: Icon(
                           Icons.timer_outlined,
@@ -237,9 +241,12 @@ class _CouponTransferState extends State<CouponTransfer> {
                         child: Icon(Icons.arrow_drop_down),
                       ),
                       decoration: InputDecoration(
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontSize: 25),
                         labelText: "Coupon Type",
                         icon: Icon(
-                          Icons.timer_outlined,
+                          Icons.type_specimen,
                           color: Theme.of(context).colorScheme.primary,
                           size: 30,
                         ),

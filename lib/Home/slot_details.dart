@@ -19,7 +19,6 @@ class SlotDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 320,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -80,63 +79,6 @@ class SlotDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.end,
-              //   children: [
-              //     CircleAvatar(
-              //         minRadius: 5,
-              //         backgroundColor: Theme.of(context).colorScheme.surface,
-              //         child: Container()),
-              //     const SizedBox(
-              //       height: distance,
-              //     ),
-              //     Row(
-              //       children: [
-              //         CircleAvatar(
-              //             minRadius: 5,
-              //             backgroundColor:
-              //                 Theme.of(context).colorScheme.primary,
-              //             child: Container()),
-              //         const SizedBox(
-              //           width: distance,
-              //         ),
-              //         CircleAvatar(
-              //             minRadius: 5,
-              //             backgroundColor:
-              //                 Theme.of(context).colorScheme.surface,
-              //             child: Container()),
-              //       ],
-              //     ),
-              //     const SizedBox(
-              //       height: distance,
-              //     ),
-              //     Row(
-              //       children: [
-              //         CircleAvatar(
-              //             minRadius: 5,
-              //             backgroundColor:
-              //                 Theme.of(context).colorScheme.tertiaryContainer,
-              //             child: Container()),
-              //         const SizedBox(
-              //           width: distance,
-              //         ),
-              //         CircleAvatar(
-              //             minRadius: 5,
-              //             backgroundColor:
-              //                 Theme.of(context).colorScheme.primary,
-              //             child: Container()),
-              //         const SizedBox(
-              //           width: distance,
-              //         ),
-              //         CircleAvatar(
-              //             minRadius: 5,
-              //             backgroundColor:
-              //                 Theme.of(context).colorScheme.surface,
-              //             child: Container()),
-              //       ],
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
@@ -156,8 +98,8 @@ class SlotDetails extends StatelessWidget {
                 context, finaldata['data']['request'].toString(), "Requested"),
             basicBlockForInformation(
                 context, finaldata['data']['release'].toString(), "Released"),
-            basicBlockForInformation(context,
-                finaldata['data']['transfer_sent'].toString(), "Transferred"),
+            basicBlockForInformation(
+                context, finaldata['data']['transfer_sent'].toString(), "Sent"),
           ],
         ),
       ],
@@ -205,7 +147,8 @@ Widget basicBlockForInformation(
     color: Colors.transparent,
     elevation: 5,
     child: Container(
-      height: 100,
+      padding: EdgeInsets.all(8),
+      // height: 100,
       width: 90,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -220,10 +163,10 @@ Widget basicBlockForInformation(
           count,
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 50,
+              fontSize: 30,
               color: Theme.of(context).colorScheme.onPrimaryContainer),
         ),
-        Text(title)
+        FittedBox(fit: BoxFit.cover, child: Text(title))
       ]),
     ),
   );
@@ -237,7 +180,7 @@ Widget specialBlockForInformation(
     color: Colors.transparent,
     elevation: 5,
     child: Container(
-      height: 100,
+      padding: EdgeInsets.all(10),
       width: 90,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -247,34 +190,17 @@ Widget specialBlockForInformation(
               Theme.of(context).colorScheme.secondary.withGreen(100),
             ],
           )),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
           count,
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 50,
+              fontSize: 30,
               color: Theme.of(context).colorScheme.onTertiaryContainer),
         ),
-        Text(title)
+        FittedBox(fit: BoxFit.contain, child: Text(title))
       ]),
     ),
   );
 }
-
-// decoration: BoxDecoration(
-//           color: Theme.of(context).colorScheme.secondary.withOpacity(1),
-//           boxShadow: [
-//             BoxShadow(
-//                 color: Theme.of(context).colorScheme.secondary,
-//                 offset: Offset(4, 4),
-//                 blurRadius: 10,
-//                 spreadRadius: 1),
-//             BoxShadow(
-//                 color: Colors.white,
-//                 offset: Offset(-4, -4),
-//                 blurRadius: 10,
-//                 spreadRadius: 1)
-//           ],
-//           borderRadius: BorderRadius.only(
-//               topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
-//         ),

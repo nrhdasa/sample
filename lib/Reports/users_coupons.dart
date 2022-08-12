@@ -15,7 +15,8 @@ class UserCoupons extends StatefulWidget {
 
 class _UserCouponsState extends State<UserCoupons> {
   List<dynamic> users = [];
-  DateTime _operationDate = DateTime.now();
+  DateTime _operationDate =
+      DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now()));
   String _slot = "Morning";
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,8 @@ class CouponRequest extends StatefulWidget {
 
 class _CouponRequestState extends State<CouponRequest> {
   final _formKey = GlobalKey<FormState>();
-  DateTime _operationDate = DateTime.now();
+  DateTime _operationDate =
+      DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now()));
   final TextEditingController _couponCountController = TextEditingController();
   final Map<String, dynamic> _formData = {};
   @override
@@ -133,6 +134,9 @@ class _CouponRequestState extends State<CouponRequest> {
                       },
                       decoration: InputDecoration(
                         labelText: "Slot",
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontSize: 25),
                         icon: Icon(
                           Icons.timer_outlined,
                           color: Theme.of(context).colorScheme.primary,
@@ -197,9 +201,12 @@ class _CouponRequestState extends State<CouponRequest> {
                         child: Icon(Icons.arrow_drop_down),
                       ),
                       decoration: InputDecoration(
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontSize: 25),
                         labelText: "Coupon Type",
                         icon: Icon(
-                          Icons.timer_outlined,
+                          Icons.type_specimen,
                           color: Theme.of(context).colorScheme.primary,
                           size: 30,
                         ),
